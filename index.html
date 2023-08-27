@@ -1,8 +1,66 @@
 <!DOCTYPE html>
-<html>
-	<body>
-		<h1>new website</h1>
-		<br>
-		<p>hmm idk</p>
-	</body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload & Download</title>
+</head>
+<body>
+  <h1>File Upload & Download</h1>
+
+  <h2>Upload a File</h2>
+  <input type="file" id="fileInput">
+  <button onclick="uploadFile()">Upload</button>
+
+  <h2>Download Files</h2>
+  <ul id="fileList"></ul>
+
+  <script>
+    function uploadFile() {
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('uploads/' + file.name, {
+          method: 'POST',
+          body: formData
+        }).then(response => {
+          if (response.ok) {
+            alert('File uploaded successfully!');
+            fileInput.value = ''; // Clear the file input
+            listFiles();
+          } else {
+            alert('Failed to upload file.');
+          }
+        });
+      }
+    }
+
+    function listFiles() {
+      const fileList = document.getElementById('fileList');
+      fileList.innerHTML = '';
+
+      fetch('uploads/')
+        .then(response => response.text())
+        .then(data => {
+          const filenames = data.split('\n');
+          filenames.forEach(filename => {
+            if (filename) {
+              const listItem = document.createElement('li');
+              const link = document.createElement('a');
+              link.href = 'uploads/' + filename;
+              link.textContent = filename;
+              listItem.appendChild(link);
+              fileList.appendChild(listItem);
+            }
+          });
+        });
+    }
+
+    listFiles(); // Initial listing of files
+  </script>
+</body>
 </html>
