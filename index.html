@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Upload & Download</title>
+  <title>file upload and download</title>
 </head>
 <body>
-  <h1>File Upload & Download</h1>
+  <h1>file upload and download</h1>
 
-  <h2>Upload a File</h2>
+  <h2>upload</h2>
   <input type="file" id="fileInput">
-  <button onclick="uploadFile()">Upload</button>
+  <button onclick="uploadFile()">upload</button>
 
   <h2>Download Files</h2>
   <ul id="fileList"></ul>
@@ -29,11 +29,11 @@
           body: formData
         }).then(response => {
           if (response.ok) {
-            alert('File uploaded successfully!');
-            fileInput.value = ''; // Clear the file input
+            alert('success!');
+            fileInput.value = '';
             listFiles();
           } else {
-            alert('Failed to upload file.');
+            alert('fail');
           }
         });
       }
@@ -60,7 +60,7 @@
         });
     }
 
-    listFiles(); // Initial listing of files
+    listFiles();
   </script>
 </body>
 </html>
