@@ -26,6 +26,6 @@ Remove-Item -LiteralPath 'C:\Program Files (x86)\ITMS\ITBC 13' -Recurse -Force
 Remove-Item -LiteralPath 'C:\Program Files (x86)\ITMS\ITBC 13' -Recurse -Force
 
 # Change wallpaper
-curl -o C:\wallpaper.png https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png
-Set-ItemProperty -Path "HKCU:Control Panel\Desktop" -Name WallPaper -Type 'String' -Value 'C:\wallpaper.png'
+Invoke-WebRequest -OutFile 'C:\wallpaper.png' 'https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png'
+Set-ItemProperty -Path 'HKCU:Control Panel\Desktop' -Name WallPaper -Type 'String' -Value 'C:\wallpaper.png'
 rundll32.exe user32.dll, UpdatePerUserSystemParameters
