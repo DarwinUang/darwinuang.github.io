@@ -24,6 +24,7 @@ Stop-Process -Name 'oatservice.exe'
 Stop-Process -Name 'Loader.exe'
 Stop-Process -Name 'MultiClient.exe'
 Stop-Process -Name 'ProcessProtect.exe'
+Stop-Process -Name 'DeviceControl.exe'
 Stop-Process -Name 'DeviceControl_x64.exe'
 Stop-Process -Name 'Ctsc_Multi.exe'
 Remove-Item -LiteralPath 'C:\Program Files (x86)\ITMS\ITBC 13' -Recurse -Force
